@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Services | South Boston Auto Tech</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Arial', sans-serif; background: #0d0d0d; background-image: radial-gradient(ellipse at 20% 30%, rgba(220,38,38,0.08) 0%, transparent 50%); color: #e6e6e6; overflow-x: hidden; }
+    nav { display: flex; justify-content: space-between; align-items: center; padding: 20px 60px; background: rgba(13,13,13,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(239,68,68,0.2); position: sticky; top: 0; z-index: 100; }
+    .logo { font-size: 1.2rem; font-weight: bold; color: #ef4444; letter-spacing: 2px; text-transform: uppercase; }
+    nav ul { list-style: none; display: flex; gap: 30px; }
+    nav ul a { color: #e6e6e6; text-decoration: none; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; transition: color 0.2s; }
+    nav ul a:hover { color: #ef4444; }
+    .page-header { text-align: center; padding: 80px 20px 60px; }
+    .page-header h1 { font-size: 2.5rem; letter-spacing: 4px; text-transform: uppercase; color: #ef4444; margin-bottom: 10px; }
+    .page-header p { color: #777; }
+    .divider { display: flex; align-items: center; gap: 20px; padding: 0 60px; margin: 10px 0; }
+    .divider::before, .divider::after { content:''; flex:1; height:1px; background: linear-gradient(to right, transparent, rgba(239,68,68,0.3), transparent); }
+    .divider span { color: #ef4444; }
+    .service-section { padding: 60px; max-width: 1100px; margin: 0 auto; }
+    .service-block { display: grid; grid-template-columns: 1fr 2fr; gap: 40px; align-items: start; margin-bottom: 40px; background: rgba(239,68,68,0.04); backdrop-filter: blur(16px); border: 1px solid rgba(239,68,68,0.15); border-radius: 16px; padding: 40px; transition: all 0.3s; cursor: pointer; }
+    .service-block:hover { border-color: rgba(239,68,68,0.4); transform: translateY(-3px); box-shadow: 0 10px 36px rgba(239,68,68,0.1); }
+    .service-block.expanded { border-color: rgba(239,68,68,0.6); background: rgba(239,68,68,0.08); }
+    .service-icon { font-size: 4rem; text-align: center; }
+    .service-info h2 { font-size: 1.4rem; color: #ef4444; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 15px; }
+    .service-info p { color: #888; line-height: 1.8; margin-bottom: 15px; font-size: 0.95rem; }
+    .service-info ul { list-style: none; }
+    .service-info ul li { color: #777; font-size: 0.9rem; padding: 6px 0; border-bottom: 1px solid rgba(239,68,68,0.08); }
+    .service-info ul li::before { content: '✦ '; color: #ef4444; font-size: 0.7rem; }
+    .price-tag { display: inline-block; background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); border-radius: 20px; padding: 6px 18px; color: #ef4444; font-size: 0.85rem; margin-top: 15px; }
+    .cta-bar { text-align: center; padding: 60px 20px; }
+    .cta-bar h2 { font-size: 1.8rem; letter-spacing: 3px; text-transform: uppercase; color: #ef4444; margin-bottom: 15px; }
+    .cta-bar p { color: #777; margin-bottom: 30px; }
+    .btn { display: inline-block; padding: 15px 40px; background: #ef4444; color: #0d0d0d; text-decoration: none; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; font-size: 0.85rem; border-radius: 6px; transition: all 0.3s; margin: 0 8px; position: relative; overflow: hidden; }
+    .btn:hover { background: #dc2626; box-shadow: 0 0 24px rgba(239,68,68,0.4); transform: translateY(-2px); }
+    .btn-outline { background: transparent; border: 2px solid #ef4444; color: #ef4444; }
+    .btn-outline:hover { background: #ef4444; color: #0d0d0d; }
+    .ripple { position: absolute; border-radius: 50%; background: rgba(255,255,255,0.3); width: 100px; height: 100px; margin-left: -50px; margin-top: -50px; animation: rippleAnim 0.6s linear; pointer-events: none; }
+    @keyframes rippleAnim { from{transform:scale(0);opacity:1} to{transform:scale(4);opacity:0} }
+    .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    footer { padding: 25px 60px; text-align: center; border-top: 1px solid rgba(239,68,68,0.1); color: #333; font-size: 0.8rem; margin-top: 40px; }
+    footer a { color: #ef4444; text-decoration: none; }
+    @media(max-width:600px){ nav{padding:15px 20px;} .service-block{grid-template-columns:1fr;} .service-section{padding:30px 20px;} }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">SB Auto Tech</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="page-header"><h1>Our Services</h1><p>Click any service to learn more</p></div>
+  <div class="divider"><span>✦</span></div>
+  <section class="service-section">
+    <div class="service-block fade-in">
+      <div class="service-icon">🔧</div>
+      <div class="service-info">
+        <h2>General Repair</h2>
+        <p>From engine diagnostics to brake jobs, our experienced technicians handle all makes and models. We use quality parts and back our work with a warranty.</p>
+        <ul>
+          <li>Engine diagnostics & repair</li>
+          <li>Brake replacement & service</li>
+          <li>Suspension & steering</li>
+          <li>Transmission service</li>
+          <li>Exhaust & muffler repair</li>
+        </ul>
+        <span class="price-tag">Free Diagnostics — (617) 269-9850</span>
+      </div>
+    </div>
+    <div class="service-block fade-in">
+      <div class="service-icon">🛢️</div>
+      <div class="service-info">
+        <h2>Oil & Maintenance</h2>
+        <p>Regular maintenance keeps your car running longer and saves you money on big repairs. We make it fast and affordable.</p>
+        <ul>
+          <li>Oil change (conventional & synthetic)</li>
+          <li>Filter replacement</li>
+          <li>Fluid top-offs & checks</li>
+          <li>Tire rotation</li>
+          <li>Multi-point inspection</li>
+        </ul>
+        <span class="price-tag">Oil Change from $39.99</span>
+      </div>
+    </div>
+    <div class="service-block fade-in">
+      <div class="service-icon">❄️</div>
+      <div class="service-info">
+        <h2>AC & Heating</h2>
+        <p>Boston summers and winters both hit hard. We keep your climate control working year-round so you're always comfortable.</p>
+        <ul>
+          <li>AC recharge & repair</li>
+          <li>Heater core service</li>
+          <li>Blower motor replacement</li>
+          <li>Refrigerant leak detection</li>
+          <li>Compressor replacement</li>
+        </ul>
+        <span class="price-tag">AC Check Starting at $49</span>
+      </div>
+    </div>
+    <div class="service-block fade-in">
+      <div class="service-icon">🔍</div>
+      <div class="service-info">
+        <h2>Inspections & Emissions</h2>
+        <p>Massachusetts state inspections done fast. No appointment needed for most services. We'll get you in and out.</p>
+        <ul>
+          <li>MA state safety inspection</li>
+          <li>Emissions testing</li>
+          <li>Pre-purchase inspection</li>
+          <li>Check engine light diagnosis</li>
+          <li>Honest written estimates</li>
+        </ul>
+        <span class="price-tag">State Inspection $35</span>
+      </div>
+    </div>
+  </section>
+  <div class="divider"><span>✦</span></div>
+  <div class="cta-bar fade-in">
+    <h2>Need Your Car Fixed?</h2>
+    <p>Call us — honest pricing, quality work, fast turnaround</p>
+    <a href="tel:6172699850" class="btn">Call (617) 269-9850</a>
+    <a href="contact.html" class="btn btn-outline">Get an Estimate</a>
+  </div>
+  <footer>© 2026 South Boston Auto Tech · 66 Von Hillern St, Dorchester · <a href="tel:6172699850">(617) 269-9850</a></footer>
+  <script>
+    const observer = new IntersectionObserver((e) => { e.forEach(en => { if(en.isIntersecting) en.target.classList.add('visible'); }); }, {threshold:0.1});
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    document.querySelectorAll('.service-block').forEach(b => b.addEventListener('click', () => b.classList.toggle('expanded')));
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        const r = document.createElement('span'); r.className='ripple';
+        const rect = this.getBoundingClientRect();
+        r.style.left=(e.clientX-rect.left)+'px'; r.style.top=(e.clientY-rect.top)+'px';
+        this.appendChild(r); setTimeout(()=>r.remove(),600);
+      });
+    });
+  </script>
+</body>
+</html>

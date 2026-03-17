@@ -31,6 +31,11 @@
     nav ul { list-style: none; display: flex; gap: 30px; }
     nav ul a { color: #e6e6e6; text-decoration: none; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; transition: color 0.2s; }
     nav ul a:hover { color: #ef4444; }
+    .btn { position: relative; overflow: hidden; }
+    .ripple { position: absolute; border-radius: 50%; background: rgba(255,255,255,0.3); width: 100px; height: 100px; margin-left: -50px; margin-top: -50px; animation: rippleAnim 0.6s linear; pointer-events: none; }
+    @keyframes rippleAnim { from{transform:scale(0);opacity:1} to{transform:scale(4);opacity:0} }
+    .card { cursor: pointer; }
+    .card.expanded { background: rgba(239,68,68,0.12) !important; border-color: rgba(239,68,68,0.6) !important; transform: scale(1.03); box-shadow: 0 12px 40px rgba(239,68,68,0.2); }
     .hero { text-align: center; padding: 100px 20px; position: relative; z-index: 1; }
     .hero-icon { font-size: 4rem; margin-bottom: 20px; animation: spin 4s linear infinite; }
     @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
@@ -69,8 +74,9 @@
   <nav>
     <div class="logo">South Boston Auto Tech</div>
     <ul>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
     </ul>
   </nav>
   <section class="hero">
@@ -78,7 +84,7 @@
     <h1>South Boston Auto Tech</h1>
     <p>Trusted auto repair in Dorchester. Honest mechanics, fair prices, quality work. Your car is in good hands.</p>
     <a href="tel:6172699850" class="btn">Call Now · (617) 269-9850</a>
-    <a href="#services" class="btn btn-outline">Our Services</a>
+    <a href="services.html" class="btn btn-outline">Our Services</a>
   </section>
   <div class="divider"><span>✦</span></div>
   <section class="services fade-in" id="services">
@@ -107,6 +113,15 @@
       entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
     }, { threshold: 0.1 });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    document.querySelectorAll('.card').forEach(card => card.addEventListener('click', () => card.classList.toggle('expanded')));
+    document.querySelectorAll('.btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        const r = document.createElement('span'); r.className='ripple';
+        const rect = this.getBoundingClientRect();
+        r.style.left=(e.clientX-rect.left)+'px'; r.style.top=(e.clientY-rect.top)+'px';
+        this.appendChild(r); setTimeout(()=>r.remove(),600);
+      });
+    });
   </script>
 </body>
 </html>
